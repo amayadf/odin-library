@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Lexend';
+    src: url(font-lexend/Lexend-VariableFont_wght.ttf);
+}
+
+:root {
+    --color-primary-dark: #000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+    /*footer support*/
+    position: relative;
+    min-height: 100%;
+    font-size: 22px;
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+}
+
+/*footer*/
+footer {
+    padding-bottom: 16px;
+    font-size: 0.8rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline var(--color-primary-dark) 2px;
+}
