@@ -24,11 +24,17 @@ html {
 
 body {
     font-family: 'Lexend', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*footer*/
 footer {
-    padding-bottom: 16px;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 8px;
     font-size: 0.8rem;
 }
 
