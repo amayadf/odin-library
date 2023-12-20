@@ -16,7 +16,7 @@
 
     <main>
         <button class="add-book-btn">+</button>
-        <div class="books-container">
+        <div class="books-grid">
 
         </div>
     </main>
@@ -31,17 +31,17 @@
         <a href="https://www.theodinproject.com/lessons/foundations-etch-a-sketch">The Odin Project</a>
     </footer>
 
-    <div class="add-book-section hidden">
+    <div class="add-book-modal hidden">
         <form class="add-book-form" id="addBookForm">
             <h3>A new book for your library!</h3>
-            <input type="text" placeholder="Title" id="book-title" required maxlength="100">
-            <input type="text" placeholder="Author" id="book-author" required maxlength="100">
-            <input type="number" placeholder="Pages" id="book-pages" required max="10000" min="1">
+            <input type="text" placeholder="Title" id="title" required maxlength="100">
+            <input type="text" placeholder="Author" id="author" required maxlength="100">
+            <input type="number" placeholder="Pages" id="pages" required max="10000" min="1">
             <div class="is-read-container">
-                <label for="book-is-read">Read?</label>
-                <input type="checkbox" id="book-is-read">
+                <label for="is-read">Read?</label>
+                <input type="checkbox" id="is-read">
             </div>
-            <button type="submit">Add</button>
+            <button type="submit" class="submit-book-btn">Add</button>
         </form>
     </div>
 </body>
