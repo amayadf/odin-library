@@ -48,6 +48,17 @@ let booksGrid = document.querySelector('.books-grid');
 
 
 //Book grid functions
+function resetBookGrid() {
+    booksGrid.innerHTML = '';
+}
+
+function updateBookGrid() {
+    resetBookGrid();
+    for(let book of library.books) {
+        createBookCard(book);
+    }
+}
+
 function createBookCard(newBook) {
     //creating card elements
     const bookCard = document.createElement('div');
@@ -91,7 +102,6 @@ function createBookCard(newBook) {
     bookCard.appendChild(removeBtn);
 }
 
-
 function createBook() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
@@ -99,6 +109,5 @@ function createBook() {
     const isRead = document.getElementById('is-read').checked;
     return new Book(title, author, pages, isRead);
 }
-
 
 //Event listeners
