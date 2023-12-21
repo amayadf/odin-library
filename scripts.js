@@ -43,8 +43,18 @@ const library = new Library();
 
 //Obtaining html elements
 let addBookBtn = document.querySelector('.add-book-btn');
+let submitBookBtn = document.querySelector('.submit-book-btn');
 let booksGrid = document.querySelector('.books-grid');
 
+
+submitBookBtn.addEventListener('click', submitNewBook);
+
+function submitNewBook() {
+    //add message when the book is already in the array
+    const book = createBook();
+    library.addBook(createBook());
+    updateBookGrid();
+}
 
 
 //Book grid functions
@@ -54,12 +64,14 @@ function resetBookGrid() {
 
 function updateBookGrid() {
     resetBookGrid();
+    let index = 0
     for(let book of library.books) {
-        createBookCard(book);
+        createBookCard(book, index);
+        index++;
     }
 }
 
-function createBookCard(newBook) {
+function createBookCard(newBook, index) {
     //creating card elements
     const bookCard = document.createElement('div');
     const bookTitle = document.createElement('p');
@@ -67,6 +79,9 @@ function createBookCard(newBook) {
     const bookPages = document.createElement('p');
     const readBtn = document.createElement('button');
     const removeBtn = document.createElement('button');
+
+    //adding the index for the book
+    bookCard.setAttribute('data-indexNumber', index);
 
     //adding their classes
     bookCard.classList.add('book-card');
@@ -77,10 +92,10 @@ function createBookCard(newBook) {
 
     //add event handlers to buttons
     readBtn.addEventListener('click', toogleRead);
-    removeBtn.addEventListener('click', removeBook)
+    removeBtn.addEventListener('click', removeBookCard)
 
     //adding their content
-    bookTitle.textContent = `"${newBook.title}"`;
+    bookTitle.textContent = newBook.title;
     bookAuthor.textContent = newBook.author;
     bookPages.textContent = `${newBook.pages} pages`;
     removeBtn.textContent = 'Remove';
@@ -111,3 +126,18 @@ function createBook() {
 }
 
 //Event listeners
+
+function removeBookCard(e) {
+    const index = Number(e.target.parentNode.dataset.indexNumber);
+    const title = (library.books[index]).title;
+    const author = (library.books[index]).author;
+    library.removeBook(title, author);
+    updateBookGrid();
+}
+
+function toogleRead(e) {
+    const index = Number(e.target.parentNode.dataset.indexNumber);
+    const book = library.books[index];
+    book.isRead = !book.isRead;
+    updateBookGrid();
+}
