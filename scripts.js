@@ -64,7 +64,7 @@ function updateBookGrid() {
     resetBookGrid();
     let index = 0
     for(let book of library.books) {
-        createBookCard(book, index);
+        booksGrid.insertAdjacentElement(createBookCard(book, index));
         index++;
     }
 }
@@ -119,6 +119,8 @@ function createBookCard(newBook, index) {
     bookButtons.appendChild(removeBtn);
     bookCard.appendChild(bookInformation);
     bookCard.appendChild(bookButtons);
+
+    return bookCard;
 }
 
 function createBook() {
