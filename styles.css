@@ -5,6 +5,11 @@
 
 :root {
     --color-primary-dark: #000;
+    --color-primary-light: #F6F1F1;
+    --color-secondary-light: #fff;
+    --color-dark-blue: #146C94;
+    --color-mid-blue: #19A7CE;
+    --color-light-blue: #AFD3E2;
 }
 
 *,
@@ -17,33 +22,18 @@
 
 html {
     /*footer support*/
-    position: relative;
-    min-height: 100%;
-    font-size: 22px;
+    /*position: relative;
+    min-height: 100%;*/
+    font-size: 20px;
 }
 
 body {
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Lexend';
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-/*footer*/
-footer {
-    position: absolute;
-    bottom: 0;
-    padding-bottom: 8px;
-    font-size: 0.8rem;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-a:hover {
-    text-decoration: underline var(--color-primary-dark) 2px;
 }

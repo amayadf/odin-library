@@ -43,10 +43,8 @@ const library = new Library();
 
 //Obtaining html elements
 let addBookBtn = document.querySelector('.add-book-btn');
-let submitBookBtn = document.querySelector('.submit-book-btn');
 let booksGrid = document.querySelector('.books-grid');
-
-
+let submitBookBtn = document.querySelector('.submit-book-btn');
 submitBookBtn.addEventListener('click', submitNewBook);
 
 function submitNewBook() {
