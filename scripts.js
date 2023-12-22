@@ -72,9 +72,11 @@ function updateBookGrid() {
 function createBookCard(newBook, index) {
     //creating card elements
     const bookCard = document.createElement('div');
+    const bookInformation = document.createElement('div');
     const bookTitle = document.createElement('p');
     const bookAuthor = document.createElement('p');
     const bookPages = document.createElement('p');
+    const bookButtons = doument.createElement('div');
     const readBtn = document.createElement('button');
     const removeBtn = document.createElement('button');
 
@@ -83,9 +85,11 @@ function createBookCard(newBook, index) {
 
     //adding their classes
     bookCard.classList.add('book-card');
+    bookInformation.classList.add('book-information');
     bookTitle.classList.add('book-title');
     bookAuthor.classList.add('book-author');
     bookPages.classList.add('book-pages');
+    bookButtons.classList.add('book-buttons');
     removeBtn.classList.add('remove-book-btn');
 
     //add event handlers to buttons
@@ -108,11 +112,13 @@ function createBookCard(newBook, index) {
     }
 
     //adding elements as children of book card
-    bookCard.appendChild(bookTitle);
-    bookCard.appendChild(bookAuthor);
-    bookCard.appendChild(bookPages);
-    bookCard.appendChild(readBtn);
-    bookCard.appendChild(removeBtn);
+    bookInformation.appendChild(title);
+    bookInformation.appendChild(author);
+    bookInformation.appendChild(pages);
+    bookButtons.appendChild(readBtn);
+    bookButtons.appendChild(removeBtn);
+    bookCard.appendChild(bookInformation);
+    bookCard.appendChild(bookButtons);
 }
 
 function createBook() {

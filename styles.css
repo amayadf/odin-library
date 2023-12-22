@@ -7,6 +7,7 @@
     --color-primary-dark: #000;
     --color-primary-light: #F6F1F1;
     --color-secondary-light: #fff;
+    --color-terciary-light: #dadada;
     --color-dark-blue: #146C94;
     --color-mid-blue: #19A7CE;
     --color-light-blue: #AFD3E2;
@@ -21,10 +22,8 @@
 }
 
 html {
-    /*footer support*/
-    /*position: relative;
-    min-height: 100%;*/
-    font-size: 20px;
+    min-height: 100%;
+    font-size: 18px;
 }
 
 body {
@@ -32,17 +31,102 @@ body {
     background-color: var(--color-primary-light);
     color: var(--color-primary-dark);
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
+/*common properties*/
+button {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--color-secondary-light);
+    background-color: var(--color-mid-blue);
+    border: 1px solid var(--color-mid-blue);
+    padding: 8px;
+    width: 150px;
+}
+
+button:hover {
+    background-color: var(--color-dark-blue);
+    border-color: var(--color-dark-blue);
+    transform: scale(1.05);
+    transition: 0.25s;
+    
+}
+
+/*header*/
+header {
+    border-bottom: 1px solid var(--color-secondary-light);
+    box-shadow: 1px 1px 5px 2px var(--color-terciary-light);
+    width: 100vw;
+    padding: 16px 32px;
+}
+
+/*main*/
+main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 16px 32px;
+}
+
+.add-book-btn {
+    padding-bottom: 16px;
+    font-size: 40px;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    box-shadow: 1px 1px 5px 2px var(--color-terciary-light);
+}
+/**books grid**/
+.books-grid {
+    width: 100%;
+    padding: 32px 32px;
+    display: grid;
+    gap: 32px;
+}
+
+/***book card***/
+/************add shadow to the book card*/
+.book-card {
+    background-color: var(--color-secondary-light);
+    border-radius: 5%;
+    width: 300px;
+    height: 350px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    box-shadow: 1px 1px 5px 2px var(--color-terciary-light) ;
+}
+
+.book-information, .book-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 8px;
+}
+
+/*************add what happens when it overflows*/
+.book-title {
+    font-style: italic;
+}
+
+
 
 /*footer*/
 footer {
     padding-bottom: 8px;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 a {
@@ -53,4 +137,9 @@ a {
 a:hover {
     color: var(--color-mid-blue);
     text-decoration: underline solid var(--color-mid-blue);
+}
+
+/*non-permanent styles*/
+.hidden {
+    display: none;
 }
