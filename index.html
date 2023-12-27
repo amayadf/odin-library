@@ -17,30 +17,21 @@
     <main>
         <button class="add-book-btn">+</button>
         <div class="books-grid">
-            <div class="book-card">
-                <div class="book-information">
-                    <p class="book-title">A Court of Thorns and Roses (A Court of Thorns and Roses #1)</p>
-                    <p class="book-author">Author: Sarah J. Maas</p>
-                    <p>240 pgs</p>
-                </div>
-                    
-                <div class="book-buttons">
-                    <button>Read</button>
-                    <button>- Remove</button>
-                </div>
-            </div>
+
         </div>
     </main>
 
     <div class="add-book-modal hidden">
         <form class="add-book-form" id="addBookForm">
             <h3>A new book for your library!</h3>
-            <input type="text" placeholder="Title" id="title" required maxlength="100">
-            <input type="text" placeholder="Author" id="author" required maxlength="100">
-            <input type="number" placeholder="Pages" id="pages" required max="10000" min="1">
-            <div class="is-read-container">
-                <label for="is-read">Have you read this?</label>
-                <input type="checkbox" id="is-read">
+            <div class="options">
+                <input type="text" placeholder="Title" id="title" required maxlength="100">
+                <input type="text" placeholder="Author" id="author" required maxlength="100">
+                <input type="number" placeholder="Pages" id="pages" required max="10000" min="1">
+                <div class="is-read-container">
+                    <label for="is-read">Have you read this?</label>
+                    <input type="checkbox" id="is-read">
+                </div>
             </div>
             <button type="submit" class="submit-book-btn">Add</button>
         </form>

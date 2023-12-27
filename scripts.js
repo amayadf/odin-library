@@ -21,21 +21,15 @@ class Library {
     }
 
     removeBook(title, author) {
-        this.books = this.books.filter((book) => {
-            book.title !== title || book.author !== author;
-        });
+        this.books = this.books.filter((book) => book.title !== title);
     }
 
     getBook(title, author) {
-        return this.books.find(book => {
-            book.title === title && book.author === author;
-        });
+        return this.books.find((book) =>  book.title === title);
     }
 
     isInLibrary(newBook) {
-        return this.books.some((book) => {
-            book.title === newBook.title && book.author === newBook.author;
-        });
+        return this.books.some((book) => book.title === newBook.title);
     }
 }
 
@@ -45,13 +39,21 @@ const library = new Library();
 let addBookBtn = document.querySelector('.add-book-btn');
 let booksGrid = document.querySelector('.books-grid');
 let submitBookBtn = document.querySelector('.submit-book-btn');
+let addBookModal = document.querySelector('.add-book-modal');
 submitBookBtn.addEventListener('click', submitNewBook);
+addBookBtn.addEventListener('click', toggleNewBookModal);
 
-function submitNewBook() {
+function submitNewBook(event) {
+
     //add message when the book is already in the array
     const book = createBook();
-    library.addBook(createBook());
+    library.addBook(book);
     updateBookGrid();
+    event.preventDefault();
+}
+
+function toggleNewBookModal() {
+    addBookModal.classList.toggle('hidden');
 }
 
 
@@ -76,7 +78,7 @@ function createBookCard(newBook, index) {
     const bookTitle = document.createElement('p');
     const bookAuthor = document.createElement('p');
     const bookPages = document.createElement('p');
-    const bookButtons = doument.createElement('div');
+    const bookButtons = document.createElement('div');
     const readBtn = document.createElement('button');
     const removeBtn = document.createElement('button');
 

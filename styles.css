@@ -125,6 +125,17 @@ main {
     font-style: italic;
 }
 
+.read, .unread:hover {
+    background-color: var(--color-dark-blue);
+    border: var(--color-dark-blue);
+}
+
+.unread, .read:hover {
+    background-color: var(--color-light-blue);
+    border-color: var(--color-light-blue);
+}
+
+
 
 /**add book modal**/
 .add-book-modal {
@@ -142,15 +153,25 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 16px;
+    gap: 32px;
     align-items: center;
+}
+
+.options {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: inherit
+    
 }
 
 input[type='text'], input[type='number'] {
     font-size: inherit;
     font-family: inherit;
     padding: 8px;
-    width: 60%;
+    width: 100%;
 }
 
 
@@ -170,7 +191,7 @@ a:hover {
     text-decoration: underline solid var(--color-mid-blue);
 }
 
-/*non-permanent styles
+/*non-permanent styles*/
 .hidden {
     display: none;
-}*/
+}
