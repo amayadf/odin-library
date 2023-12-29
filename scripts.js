@@ -40,9 +40,12 @@ let booksGrid = document.querySelector('.books-grid');
 let addBookBtn = document.querySelector('.add-book-btn')
 let submitBookBtn = document.querySelector('.submit-book-btn');
 let addBookModal = document.querySelector('.add-book-modal');
+let addBookForm = document.querySelector('.add-book-form');
+let closeBookModalBtn = document.querySelector('.add-book-modal .close');
 
 //event listeners
-addBookBtn.addEventListener('click', () => { addBookModal.classList.toggle('hidden');});
+addBookBtn.addEventListener('click', toggleAddBookModal);
+closeBookModalBtn.addEventListener('click', toggleAddBookModal);
 submitBookBtn.addEventListener('click', addNewBook);
 
 
@@ -103,10 +106,15 @@ function createBookCard(book) {
 }
 
 //button click event functions 
+function toggleAddBookModal() {
+    addBookModal.classList.toggle('hidden');
+}
+
 function addNewBook(e) {
     e.preventDefault();
     const newBook = createBookFromInput();
     library.addBook(newBook);
+    addBookForm.reset();
     updateBookGrid();
 }
 

@@ -11,7 +11,7 @@
     --color-dark-blue: #146C94;
     --color-mid-blue: #19A7CE;
     --color-light-blue: #AFD3E2;
-    --color-transparent-blue: #afd3e27e;
+    --color-transparent-blue: #bcdbe8;
 }
 
 *,
@@ -141,12 +141,27 @@ main {
 .add-book-modal {
     z-index: 1;
     position: absolute;
-    right: 0;
-    top: 0;
-    height: 100vh;
+    right: 30%;
+    top: 25%;
+    min-height: fit-content;
+    min-width: fit-content;
+    height: 50vh;
     width: 40vw;
     background-color: var(--color-transparent-blue);
     padding: 32px;
+    border-radius: 5%;
+    box-shadow: 1px 1px 5px 2px var(--color-terciary-light) ;
+}
+
+.close {
+    width: max-content;
+    height: max-content;
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
 }
 
 .add-book-modal form {
