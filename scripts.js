@@ -1,11 +1,11 @@
 //Classes
 
 class Book {
-    constructor(title = 'Unknown', author = 'Unknown', pages = '0', isRead = false) {
+    constructor(title = 'Unknown', author = 'Unknown', pages = '0', read = 'false') {
         this.title = title;
-        this.author - author;
+        this.author = author;
         this.pages = pages;
-        this.isRead = isRead;
+        this.read = read;
     }
 }
 
@@ -15,137 +15,129 @@ class Library {
     }
 
     addBook(newBook) {
-        if(!isInLibrary(newBook)) {
+        if(!(this.isInLibrary(newBook))) {
             this.books.push(newBook);
         }
     }
 
-    removeBook(title, author) {
+    removeBook(title) {
         this.books = this.books.filter((book) => book.title !== title);
-    }
-
-    getBook(title, author) {
-        return this.books.find((book) =>  book.title === title);
     }
 
     isInLibrary(newBook) {
         return this.books.some((book) => book.title === newBook.title);
     }
+
+    getBook(title) {
+        return this.books.find((book) => book.title === title)
+      }
 }
 
 const library = new Library();
 
-//Obtaining html elements
-let addBookBtn = document.querySelector('.add-book-btn');
+//get elements from html
 let booksGrid = document.querySelector('.books-grid');
+let addBookBtn = document.querySelector('.add-book-btn')
 let submitBookBtn = document.querySelector('.submit-book-btn');
 let addBookModal = document.querySelector('.add-book-modal');
-submitBookBtn.addEventListener('click', submitNewBook);
-addBookBtn.addEventListener('click', toggleNewBookModal);
 
-function submitNewBook(event) {
-
-    //add message when the book is already in the array
-    const book = createBook();
-    library.addBook(book);
-    updateBookGrid();
-    event.preventDefault();
-}
-
-function toggleNewBookModal() {
-    addBookModal.classList.toggle('hidden');
-}
+//event listeners
+addBookBtn.addEventListener('click', () => { addBookModal.classList.toggle('hidden');});
+submitBookBtn.addEventListener('click', addNewBook);
 
 
-//Book grid functions
+//books grid functions
 function resetBookGrid() {
     booksGrid.innerHTML = '';
 }
 
 function updateBookGrid() {
     resetBookGrid();
-    let index = 0
     for(let book of library.books) {
-        booksGrid.insertAdjacentElement(createBookCard(book, index));
-        index++;
+        createBookCard(book);
     }
 }
 
-function createBookCard(newBook, index) {
-    //creating card elements
-    const bookCard = document.createElement('div');
-    const bookInformation = document.createElement('div');
-    const bookTitle = document.createElement('p');
-    const bookAuthor = document.createElement('p');
-    const bookPages = document.createElement('p');
-    const bookButtons = document.createElement('div');
-    const readBtn = document.createElement('button');
-    const removeBtn = document.createElement('button');
+function createBookCard(book) {
+    let bookCard = document.createElement('div');
+    let bookInformation = document.createElement('div');
+    let title = document.createElement('p');
+    let author = document.createElement('p');
+    let pages = document.createElement('p');
+    let bookOptions = document.createElement('div');
+    let readBtn = document.createElement('button');
+    let removeBtn = document.createElement('button');
 
-    //adding the index for the book
-    bookCard.setAttribute('data-indexNumber', index);
-
-    //adding their classes
     bookCard.classList.add('book-card');
     bookInformation.classList.add('book-information');
-    bookTitle.classList.add('book-title');
-    bookAuthor.classList.add('book-author');
-    bookPages.classList.add('book-pages');
-    bookButtons.classList.add('book-buttons');
-    removeBtn.classList.add('remove-book-btn');
+    bookOptions.classList.add('book-options');
+    title.classList.add('book-title');
 
-    //add event handlers to buttons
-    readBtn.addEventListener('click', toogleRead);
-    removeBtn.addEventListener('click', removeBookCard)
+    readBtn.addEventListener('click', toggleRead);
+    removeBtn.addEventListener('click', removeBookFromGrid);
 
-    //adding their content
-    bookTitle.textContent = newBook.title;
-    bookAuthor.textContent = newBook.author;
-    bookPages.textContent = `${newBook.pages} pages`;
-    removeBtn.textContent = 'Remove';
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = `${book.pages} pages`;
+    removeBtn.textContent = 'REMOVE';
 
-    if(newBook.isRead) {
-        readBtn.textContent = 'Read';
+    if(book.read) {
+        readBtn.textContent = 'READ';
         readBtn.classList.add('read');
     }
     else {
-        readBtn.textContent = 'Not read';
-        readBtn.textContent.add('not-read');
+        readBtn.textContent = 'UNREAD';
+        readBtn.classList.add('unread');
     }
 
-    //adding elements as children of book card
     bookInformation.appendChild(title);
     bookInformation.appendChild(author);
     bookInformation.appendChild(pages);
-    bookButtons.appendChild(readBtn);
-    bookButtons.appendChild(removeBtn);
+    bookOptions.appendChild(readBtn);
+    bookOptions.appendChild(removeBtn);
     bookCard.appendChild(bookInformation);
-    bookCard.appendChild(bookButtons);
-
-    return bookCard;
+    bookCard.appendChild(bookOptions);
+    bookCard.appendChild(bookInformation);
+    bookCard.appendChild(bookOptions);
+    booksGrid.appendChild(bookCard);
 }
 
-function createBook() {
-    const title = document.getElementById('title').value;
+//button click event functions 
+function addNewBook(e) {
+    e.preventDefault();
+    const newBook = createBookFromInput();
+    library.addBook(newBook);
+    updateBookGrid();
+}
+
+function toggleRead(e) {
+    const title = e.target.parentNode.parentNode.firstChild.firstChild.innerHTML;
+    const book = library.getBook(title);
+    book.read = !book.read;
+    updateBookGrid();
+}
+
+function removeBookFromGrid(e) {
+    const title = e.target.parentNode.parentNode.firstChild.firstChild.innerHTML;
+    library.removeBook(title);
+    updateBookGrid();
+}
+
+//function to create book
+function createBookFromInput() {
+    const title = document.getElementById('title').value;;
     const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const isRead = document.getElementById('is-read').checked;
-    return new Book(title, author, pages, isRead);
+    const pages = +document.getElementById('pages').value;
+    const read = document.getElementById('is-read').checked;
+    return new Book(title, author, pages, read);
 }
 
-//Event listeners
 
-function removeBookCard(e) {
-    const index = Number(e.target.parentNode.dataset.indexNumber);
-    const title = (library.books[index]).title;
-    const author = (library.books[index]).author;
-    library.removeBook(title, author);
-    updateBookGrid();
-}
 
-function toogleRead(e) {
-    const index = Number(e.target.parentNode.dataset.indexNumber);
-    const book = library.books[index];
-    book.isRead = !book.isRead;
-    updateBookGrid();
-}
+
+
+
+
+
+
+

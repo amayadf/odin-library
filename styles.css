@@ -112,7 +112,7 @@ main {
     box-shadow: 1px 1px 5px 2px var(--color-terciary-light) ;
 }
 
-.book-information, .book-buttons {
+.book-information, .book-options {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
